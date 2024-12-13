@@ -1,0 +1,30 @@
+.searchFieldContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.searchFieldContainer > .txtField > input {
+    height: 100%;
+    border-radius: 50px;
+    border: 0;
+    box-shadow: 1px 1px 10px 1px #cccccc;
+}
+
+.txtField {
+    display: flex;
+    justify-content: center;
+    /* position: relative; */
+    width: 100%;
+}
+
+
+
+.srchIcon {
+    position: absolute;
+    font-size: 1.5rem;
+    /* top: -2px; */
+    /* right: 12%; */
+}

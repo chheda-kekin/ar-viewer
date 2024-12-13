@@ -1,0 +1,22 @@
+header {
+    /* position: fixed; */
+    width: 100%;
+}
+
+.logo-img-container {
+    height: 4rem;
+    width: 8rem;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.logo-img {
+    height: 100%;
+    width: 100%;
+}
+
+.profile-img {
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+}
