@@ -95,8 +95,7 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
         ar-modes="webxr scene-viewer quick-look"
         camera-controls
         auto-rotate
-
-      >
+        >
 
         {ARSupported && (
           <button slot="ar-button" className="arbutton">

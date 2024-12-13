@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import "./Equipment.css";
 import PrimaryButton from "../UI/PrimaryButton/PrimaryButton";
@@ -7,6 +7,18 @@ const Equipment = ({item, viewDetailsHandler}) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [ARSupported, setARSupported] = useState(false);
+
+    const model = useRef();
+    const varient = useRef(null);
+
+    let modelViewer1 = {
+        backgroundColor: " #ecf0f3",
+        overflowX: "hidden",
+        posterColor: "#eee",
+        width: "100%",
+        height: ARSupported ? "85%" : "75%",
+        borderRadius: 15,
+    };
 
     useEffect(() => {
         if (
@@ -24,11 +36,38 @@ const Equipment = ({item, viewDetailsHandler}) => {
         console.log('Is AR Supported', ARSupported);
       }, []);
 
+      useEffect(() => {
+        // set up event listeners
+        const modelViewer = model.current
+        modelViewer &&
+        modelViewer.addEventListener('load', () => {
+          console.log('loaded')
+          const availableVariants = modelViewer?.availableVariants;
+          console.log(availableVariants)
+          for (const variant of availableVariants) {
+            const option = document.createElement('option');
+            option.value = variant;
+            option.textContent = variant;
+            varient?.current?.appendChild(option);
+          }
+    
+          // Adding a default option
+          const defaultOption = document.createElement('option');
+          defaultOption.value = 'Default';
+          defaultOption.textContent = 'Default';
+          varient?.current?.appendChild(defaultOption);
+        });
+    
+        varient?.current?.addEventListener('input', (event) => {
+          modelViewer.variantName = event.target.value === 'Default' ? null : event.target.value;
+        });
+      }, []);  
+
     function showEquipmentDetails() {
         if(isExpanded) {
             return (
                 <div className="eqpmnt-cntnr-dtld">
-                    <div className="wrapr-cntnr" onClick={()=>setIsExpanded(false)}>
+                    <div className="wrapr-cntnr" onClick={() => setIsExpanded(false)}>
                         <div className="eqpmnt-typ-cntnr">
                             <div class="eqpmnt-typ">Module Factory</div>
                         </div>
@@ -36,7 +75,24 @@ const Equipment = ({item, viewDetailsHandler}) => {
                             <div>Equipment title</div>
                         </div>
                         <div className="img-cntnr">
-                            <img src="arviewer/equipment-thumbnail.png" height="100%" width="100%" />
+                            {/* <img src="arviewer/equipment-thumbnail.png" height="100%" width="100%" /> */}
+                            <model-viewer
+                                key={item.id}
+                                ref={model}
+                                style={modelViewer1}
+                                src={item.modelSrc}
+                                ios-src={item.iOSSrc}
+                                alt="A 3D model"
+                                ar
+                                ar-modes="webxr scene-viewer quick-look"
+                                camera-controls
+                                auto-rotate>
+                                    {ARSupported && (
+                                        <button slot="ar-button" className="arbutton">
+                                            View in your space
+                                        </button>
+                                    )}
+                            </model-viewer>
                         </div>
                         <div className="eqpmnt-dtl">
                             <div>The glass loader is picker placer robot used in Module factory to pickup and place glass on conveyor</div>

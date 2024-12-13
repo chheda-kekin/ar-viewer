@@ -17,7 +17,7 @@ const ProductList = ({ addToWishlist, wishlist, removeFromWishlist }) => {
 
   return (
     <>
-      {/* <section className="list-view">
+      <section className="list-view">
         {ProductItems.map((item,idx) => (
           <LazyLoad key={idx}>
             <ModelViewer 
@@ -27,7 +27,7 @@ const ProductList = ({ addToWishlist, wishlist, removeFromWishlist }) => {
               removeFromWishlist={removeFromWishlist} />
           </LazyLoad>
         ))}
-      </section> */}
+      </section>
 
       <section>
         <SearchField />
