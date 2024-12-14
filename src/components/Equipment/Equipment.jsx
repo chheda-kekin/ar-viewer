@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import "./Equipment.css";
 import PrimaryButton from "../UI/PrimaryButton/PrimaryButton";
+import ModelViewer from "../ModelViewer/ModelViewer";
 
 const Equipment = ({item, viewDetailsHandler}) => {
 
@@ -67,39 +68,23 @@ const Equipment = ({item, viewDetailsHandler}) => {
         if(isExpanded) {
             return (
                 <div className="eqpmnt-cntnr-dtld">
-                    <div className="wrapr-cntnr" onClick={() => setIsExpanded(false)}>
+                    <div className="wrapr-cntnr">
                         <div className="eqpmnt-typ-cntnr">
                             <div class="eqpmnt-typ">Module Factory</div>
                         </div>
                         <div className="eqpmnt-ttl">
-                            <div>Equipment title</div>
+                            <div>{ item.name }</div>
                         </div>
                         <div className="img-cntnr">
                             {/* <img src="arviewer/equipment-thumbnail.png" height="100%" width="100%" /> */}
-                            <model-viewer
-                                key={item.id}
-                                ref={model}
-                                style={modelViewer1}
-                                src={item.modelSrc}
-                                ios-src={item.iOSSrc}
-                                alt="A 3D model"
-                                ar
-                                ar-modes="webxr scene-viewer quick-look"
-                                camera-controls
-                                auto-rotate>
-                                    {ARSupported && (
-                                        <button slot="ar-button" className="arbutton">
-                                            View in your space
-                                        </button>
-                                    )}
-                            </model-viewer>
+                            <ModelViewer item={item} />
                         </div>
                         <div className="eqpmnt-dtl">
                             <div>The glass loader is picker placer robot used in Module factory to pickup and place glass on conveyor</div>
                         </div>
                     </div>
                     <div className="arBtnCntnr">
-                        <PrimaryButton>View in AR</PrimaryButton>
+                        <PrimaryButton onClick={() => setIsExpanded(false)}>Close</PrimaryButton>
                     </div>
                 </div>
             );    

@@ -1,7 +1,7 @@
 import "./App.css";
 import "@google/model-viewer/dist/model-viewer.min.js";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import ProductList from "./components/ProductList/ProductList";
+import EquipmentList from "./components/EquipmentList/EquipmentList";
 import About from "./components/About/About";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 // import Footer from "./components/Footer/Footer";
@@ -17,7 +17,7 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/arviewer" element={<ProductList />} />
+          <Route path="/arviewer" element={<EquipmentList />} />
           <Route path="/arviewer/sign-in" element={<SignIn />} />
           <Route path="/arviewer/about" element={<About />} />
           <Route path="/arviewer/feedback" element={<Feedback />} />

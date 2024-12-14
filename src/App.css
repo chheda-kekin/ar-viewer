@@ -249,9 +249,7 @@
 }
 
 .model-view {
-  width: 450px;
   height: 500px;
-  margin: 1rem;
   position: relative;
 }
 
@@ -321,12 +319,6 @@
     margin-bottom: 2rem;
     place-items: center;
   }
-  .srchIcon {
-    position: absolute;
-    font-size: 1.5rem;
-    top: 4.8rem;
-    right: 4.6rem;
-  }
 }
 @media (max-width: 560px) {
   .help-btn {
@@ -383,6 +375,7 @@
     padding: 0 10px;
     margin-top: 20px;
   } */
+
   .help-btn {
     top: 4rem;
     left: 1rem;

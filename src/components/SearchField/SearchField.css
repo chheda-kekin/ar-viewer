@@ -20,6 +20,42 @@
     width: 100%;
 }
 
+@media screen and (width > 1279px) {
+    .srchIcon {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 79px;
+        right: 12%;
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .srchIcon {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 79px;
+        right: 12%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .srchIcon {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 79px;
+        right: 13%;
+      }
+}
+
+@media screen and (max-width: 480px) {
+    .srchIcon {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 79px;
+        right: 14%;
+      }
+}
+
 
 
 .srchIcon {

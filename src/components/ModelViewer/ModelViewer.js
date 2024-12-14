@@ -1,19 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
 import LazyLoad from "react-lazyload";
-// import "../../Products/ProductList.css";
 import Help from "./Help";
-const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
+const ModelViewer = ({ item }) => {
   const [display, setDisplay] = useState(false);
   const [ARSupported, setARSupported] = useState(false);
   const [annotate, setAnnotate] = useState(false);
   
   let modelViewer1 = {
-    backgroundColor: " #ecf0f3",
     overflowX: "hidden",
     posterColor: "#eee",
     width: "100%",
     height: ARSupported ? "85%" : "75%",
-    borderRadius: 15,
+    height: "100%",
+    borderRadius: 5,
   };
   
   // Accessing product for full screen start
@@ -78,13 +77,11 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
       modelViewer.variantName = event.target.value === 'Default' ? null : event.target.value;
     });
   }, []);
-   
-  useEffect(() => {
-  }, [item, wishlist]);
 
   return (
     <div className="model-view">
       <model-viewer
+        size="Fit to Screen"
         key={item.id}
         ref={model}
         style={modelViewer1}
@@ -103,30 +100,9 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
           </button>
         )}
 
-        <button className="fullscreen-btn" onClick={toggle}>
+        {/* <button className="fullscreen-btn" onClick={toggle}>
           &#x26F6;<span>full screen</span>
-        </button>
-        {display ? (
-          <>
-            <button
-              className={document.fullscreenElement ? "close fz" : "close"}
-              onClick={() => setDisplay(false)}
-            >
-              &#10006;
-            </button>
-            <Help />
-          </>
-        ) : (
-          <>
-            <button className="help-btn" onClick={() => setDisplay(true)}>
-              ?<span>help</span>
-            </button>
-          </>
-        )}
-        
-        <button className="annotate-btn" onClick={() => setAnnotate((prevState) => !prevState)}>
-          i
-        </button>
+        </button> */}
 
         {annotate && item.annotations.map((annotate, idx) => (
           <button
@@ -143,23 +119,7 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
             <div class="HotspotAnnotation">{annotate.title}</div>
           </button>
         ))}
-        
-        <div class="controls variant_div">
-          <select ref={varient} id="variant"></select>
-        </div>
-
       </model-viewer>
-        
-      <LazyLoad>
-        {/* Card content below the model-viewer */}
-        <div className="qr-sec">
-          <div className="product-details">
-            <div>
-              <div className="pname">{item.name}</div>
-            </div>
-          </div>
-        </div>
-      </LazyLoad>
     </div>
   );
 };
